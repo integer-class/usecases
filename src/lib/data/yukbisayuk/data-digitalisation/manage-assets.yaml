@@ -1,0 +1,102 @@
+use-cases:
+  - name: Manage Asset
+    id: DD-UC0004
+    level: medium
+    actor: Admin
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Admin
+        interest: Can manage resident asset data such as create, read, update, and delete
+    description: |
+      Asset means a valuable thing that belongs to a person.
+      An admin can manage the data of the assets in the area to help them keep track of the assets in the area
+    relationship:
+      association:
+        - Admin
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Admin clicks the "Create" button
+        type: external
+      - name: Admin clicks the "Asset" menu
+        type: external
+      - name: Admin clicks the "Update" button
+        type: external
+      - name: Admin clicks the "Delete" button
+        type: external
+    preconditions:
+      - Admin is logged in
+      - Admin has the access to manage the asset data
+    postconditions:
+      - The asset data is updated
+      - The asset data is deleted
+      - The asset data is created
+    flow-of-events:
+      - name: Admin clicks the "Asset" menu
+        type: actor
+      - name: The system shows the list of assets
+        type: system
+    alternative-flows:
+      - name: Create a new asset
+        events:
+          - name: Admin clicks the "Create" button
+            type: actor
+          - name: The system shows the form to create a new asset
+            type: system
+          - name: Admin fills the form and clicks the "Save" button
+            type: actor
+          - name: The system saves the new asset data
+            type: system
+      - name: Update an asset
+        events:
+          - name: Admin clicks the "Update" button
+            type: actor
+          - name: The system shows the form to update the asset
+            type: system
+          - name: Admin fills the form and clicks the "Save" button
+            type: actor
+          - name: The system saves the updated asset data
+            type: system
+      - name: Delete an asset
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation
+            type: system
+          - name: Admin clicks the "Yes" button
+            type: actor
+          - name: The system deletes the asset data
+            type: system
+    exception-flows:
+      - name: Admin is not logged in
+        events:
+          - name: Admin clicks the "Asset" menu
+            type: actor
+          - name: The system shows the login page
+            type: system
+          - name: Admin fills the form and clicks the "Login" button
+            type: actor
+          - name: The system shows the list of assets
+            type: system
+      - name: Admin has no access to manage the asset data
+        events:
+          - name: Admin clicks the "Asset" menu
+            type: actor
+          - name: The system shows the message "You have no access to manage the asset data"
+            type: system
+      - name: Admin cancels the deletion
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "No" button
+            type: actor
+          - name: The system closes the confirmation dialog
+            type: system

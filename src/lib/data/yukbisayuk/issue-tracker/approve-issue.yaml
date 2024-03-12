@@ -1,0 +1,60 @@
+use-cases:
+  - name: Approve Issue
+    id: IT-UC0002
+    level: high
+    actor: Admin
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Admin
+        interest: Can approve an issue in the area to confirm its validity
+    description: |
+      An admin can approve an issue in the area to confirm its validity. This is done through the web application
+      to prevent the issue from being reported multiple times or fake issues
+    relationship:
+      association:
+        - Admin
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Admin clicks the "Issues" menu
+        type: external
+      - name: Admin clicks the "Approve/Not Approved" button
+        type: external
+    preconditions:
+      - Admin is logged in
+      - Admin has the access to approve the issue
+    postconditions:
+      - The issue is approved/not approved
+    flow-of-events:
+      - name: Admin clicks the "Issues" menu
+        type: actor
+      - name: The system shows the list of issues
+        type: system
+      - name: Admin clicks the "Approve/Not Approved" button
+        type: actor
+      - name: The system shows the form to approve/not approve the issue
+        type: system
+    alternative-flows: []
+    exception-flows:
+      - name: RW is not logged in
+        events:
+          - name: RW clicks the "Approve Issue" menu
+            type: actor
+          - name: The system shows the login page
+            type: system
+          - name: RW fills the form and clicks the "Login" button
+            type: actor
+          - name: The system shows the list of issues
+            type: system
+      - name: RW is not authorized
+        events:
+          - name: RW clicks the "Approve Issue" menu
+            type: actor
+          - name: The system shows the "Not Authorized" page
+            type: system

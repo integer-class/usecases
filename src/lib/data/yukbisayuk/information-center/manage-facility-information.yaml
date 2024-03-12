@@ -1,0 +1,102 @@
+use-cases:
+  - name: Manage Facility Information
+    id: IC-UC0001
+    level: high
+    actor: Admin
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Admin
+        interest: Can manage manage the facility information data such as create, read, update, and delete
+    description: |
+      Facility Information of the area will be managed by the Admin to provide the information to the public.
+      This is to make it easier for the public to find out the information about the facility in the area.
+    relationship:
+      association:
+        - Admin
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Admin clicks the "Facility Information" menu
+        type: external
+      - name: Admin clicks the "Create" button
+        type: external
+      - name: Admin clicks the "Update" button
+        type: external
+      - name: Admin clicks the "Delete" button
+        type: external
+    preconditions:
+      - Admin is logged in
+      - Admin has the access to manage the facility information
+    postconditions:
+      - The facility information is created
+      - The facility information is updated
+      - The facility information is deleted
+    flow-of-events:
+      - name: Admin clicks the "Facility Information" menu
+        type: actor
+      - name: The system shows the list of facility information
+        type: system
+    alternative-flows:
+      - name: Create the facility information
+        events:
+          - name: Admin clicks the "Create" button
+            type: actor
+          - name: The system shows the form to manage the facility information
+            type: system
+          - name: Admin fills the form and clicks the "Create" button
+            type: actor
+          - name: The system managees the facility information
+            type: system
+      - name: Update the facility information
+        events:
+          - name: Admin clicks the "Update" button
+            type: actor
+          - name: The system shows the form to update the facility information
+            type: system
+          - name: Admin fills the form and clicks the "Update" button
+            type: actor
+          - name: The system updates the facility information
+            type: system
+      - name: Delete the facility information
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "Yes" button
+            type: actor
+          - name: The system deletes the facility information
+            type: system
+    exception-flows:
+      - name: Admin is not logged in
+        events:
+          - name: Admin clicks the "Create Facility Information" menu
+            type: actor
+          - name: The system shows the login page
+            type: system
+          - name: Admin fills the form and clicks the "Login" button
+            type: actor
+          - name: The system shows the list of facility information
+            type: system
+      - name: Admin has no access to manage the facility information
+        events:
+          - name: Admin clicks the "Create Facility Information" menu
+            type: actor
+          - name: The system shows the message "You have no access to manage the facility information"
+            type: system
+      - name: Admin cancels the deletion
+        events:
+            - name: Admin clicks the "Delete" button
+              type: actor
+            - name: The system shows the confirmation dialog
+              type: system
+            - name: Admin clicks the "No" button
+              type: actor
+            - name: The system closes the confirmation dialog
+              type: system

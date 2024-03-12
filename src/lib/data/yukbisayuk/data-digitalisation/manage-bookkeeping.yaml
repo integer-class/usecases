@@ -1,0 +1,102 @@
+use-cases:
+  - name: Manage Bookkeeping
+    id: DD-UC0005
+    level: high
+    actor: Admin
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Admin
+        interest: Can manage bookkeeping data such as create, read, update, and delete
+    description: |
+      Bookkeeping means the activity of keeping records of the financial affairs of a RW.
+      An admin can manage the data of the bookkeeping in the area
+    relationship:
+      association:
+        - Admin
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Admin clicks the "Bookkeeping" menu
+        type: external
+      - name: Admin clicks the "Create" button
+        type: external
+      - name: Admin clicks the "Update" button
+        type: external
+      - name: Admin clicks the "Delete" button
+        type: external
+    preconditions:
+      - Admin is logged in
+      - Admin has the access to manage the bookkeeping data
+    postconditions:
+      - The bookkeeping data is updated
+      - The bookkeeping data is deleted
+      - The bookkeeping data is created
+    flow-of-events:
+      - name: Admin clicks the "Bookkeeping" menu
+        type: actor
+      - name: The system shows the list of bookkeeping of the RW
+        type: system
+    alternative-flows:
+      - name: Create a new bookkeeping
+        events:
+          - name: Admin clicks the "Create" button
+            type: actor
+          - name: The system shows the form to create a new bookkeeping
+            type: system
+          - name: Admin fills the form and clicks the "Save" button
+            type: actor
+          - name: The system saves the new bookkeeping data
+            type: system
+      - name: Update a bookkeeping
+        events:
+          - name: Admin clicks the "Update" button
+            type: actor
+          - name: The system shows the form to update the bookkeeping
+            type: system
+          - name: Admin fills the form and clicks the "Save" button
+            type: actor
+          - name: The system saves the updated bookkeeping data
+            type: system
+      - name: Delete a bookkeeping
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "Yes" button
+            type: actor
+          - name: The system deletes the bookkeeping data
+            type: system
+    exception-flows:
+      - name: Admin is not logged in
+        events:
+          - name: Admin clicks the "Bookkeeping" menu
+            type: actor
+          - name: The system shows the login page
+            type: system
+          - name: Admin fills the form and clicks the "Login" button
+            type: actor
+          - name: The system shows the list of bookkeeping
+            type: system
+      - name: Admin has no access to manage the bookkeeping data
+        events:
+          - name: Admin clicks the "Bookkeeping" menu
+            type: actor
+          - name: The system shows the message "You have no access to manage the bookkeeping data"
+            type: system
+      - name: Admin cancels the deletion
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "No" button
+            type: actor
+          - name: The system closes the confirmation dialog
+            type: system

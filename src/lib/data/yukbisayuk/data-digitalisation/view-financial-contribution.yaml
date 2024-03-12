@@ -1,0 +1,42 @@
+use-cases:
+  - name: View Financial Contributions
+    id: DD-UC0007
+    level: low
+    actor: Resident
+    type:
+      - overview
+      - real
+    stakeholders:
+      - name: Resident
+        interest: Can view their own financial contributions to the area
+    description: |
+      A resident can view their own financial contributions to the area. This is done through the chatbot.
+    relationship:
+      association:
+        - Resident
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Resident asks the chatbot to view their own financial contribution data
+        type: external
+    preconditions:
+      - Resident has been registered in the system
+    postconditions:
+      - The resident views their own data
+    flow-of-events:
+      - name: Resident asked the chatbot to view their own financial contribution data
+        type: actor
+      - name: The system shows the financial contribution data of the resident
+        type: system
+    alternative-flows: []
+    exception-flows:
+      - name: Resident is not registered
+        events:
+          - name: Resident asked the chatbot to view their own data
+            type: actor
+          - name: The chatbot asks the resident to register first
+            type: system

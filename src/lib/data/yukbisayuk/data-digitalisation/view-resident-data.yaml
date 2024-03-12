@@ -1,0 +1,43 @@
+use-cases:
+  - name: View Resident Data
+    id: DD-UC0002
+    level: medium
+    actor: Resident
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Resident
+        interest: Can view their own data
+    description: |
+      A resident can view their own data such as personal data, household data, and asset data. This is done through
+      the chatbot.
+    relationship:
+      association:
+        - Resident
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Resident asks the chatbot to view their own data
+        type: external
+    preconditions:
+      - Resident has been registered in the system
+    postconditions:
+      - The resident views their own data
+    flow-of-events:
+      - name: Resident clicks the "View Data" menu
+        type: actor
+      - name: The system shows the personal data of the resident
+        type: system
+    alternative-flows: []
+    exception-flows:
+      - name: Resident is not registered
+        events:
+          - name: Resident asked the chatbot to view their own data
+            type: actor
+          - name: The chatbot asks the resident to register first
+            type: system

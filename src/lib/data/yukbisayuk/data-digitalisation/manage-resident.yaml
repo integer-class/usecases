@@ -1,0 +1,102 @@
+use-cases:
+  - name: Manage Resident
+    id: DD-UC0001
+    level: high
+    actor: Admin
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Admin
+        interest: Can manage resident data such as create, read, update, and delete
+    description: |
+      A resident is a person who lives in a household. An admin can manage the data of the residents in the area. This is
+      needed to keep the data of the residents up to date.
+    relationship:
+      association:
+        - Admin
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Admin clicks the "Create" button
+        type: external
+      - name: Admin clicks the "Residents" menu
+        type: external
+      - name: Admin clicks the "Update" button
+        type: external
+      - name: Admin clicks the "Delete" button
+        type: external
+    preconditions:
+      - Admin is logged in
+      - Admin has the access to manage the resident data
+    postconditions:
+      - The resident data is updated
+      - The resident data is deleted
+      - The resident data is created
+    flow-of-events:
+      - name: Admin clicks the "Resident" menu
+        type: actor
+      - name: The system shows the list of residents
+        type: system
+    alternative-flows:
+      - name: Create a new resident
+        events:
+          - name: Admin clicks the "Create" button
+            type: actor
+          - name: The system shows the form to create a new resident
+            type: system
+          - name: Admin fills the form and clicks the "Save" button
+            type: actor
+          - name: The system saves the new resident data
+            type: system
+      - name: Update a resident
+        events:
+          - name: Admin clicks the "Update" button
+            type: actor
+          - name: The system shows the form to update the resident
+            type: system
+          - name: Admin fills the form and clicks the "Save" button
+            type: actor
+          - name: The system saves the updated resident data
+            type: system
+      - name: Delete a resident
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "Yes" button
+            type: actor
+          - name: The system deletes the resident data
+            type: system
+    exception-flows:
+      - name: Admin is not logged in
+        events:
+          - name: Admin clicks the "Resident" menu
+            type: actor
+          - name: The system shows the login page
+            type: system
+          - name: Admin fills the form and clicks the "Login" button
+            type: actor
+          - name: The system shows the list of residents
+            type: system
+      - name: Admin has no access to manage the resident data
+        events:
+          - name: Admin clicks the "Resident" menu
+            type: actor
+          - name: The system shows the message "You have no access to manage the resident data"
+            type: system
+      - name: Admin cancels the deletion
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "No" button
+            type: actor
+          - name: The system closes the confirmation dialog
+            type: system

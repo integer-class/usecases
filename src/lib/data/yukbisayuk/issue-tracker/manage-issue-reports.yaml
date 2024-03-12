@@ -1,0 +1,85 @@
+use-cases:
+  - name: Manage Issue Reports
+    id: IT-UC0003
+    level: high
+    actor: Admin
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Admin
+        interest: Manage the issue reports in the area
+    description: |
+      An admin can manage the issue reports in the area such as update and delete the issue report.
+      They can also change the status of the issue report.
+    relationship:
+      association:
+        - Admin
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Admin clicks the "Issue Reports" menu
+        type: external
+      - name: Admin clicks the "Update" button
+        type: external
+      - name: Admin clicks the "Delete" button
+        type: external
+    preconditions:
+      - Admin is logged in
+      - Admin has the access to update the issue report
+    postconditions:
+      - The issue report is updated
+      - The issue report is deleted
+    flow-of-events:
+      - name: Admin clicks the "Issue Reports" menu
+        type: actor
+      - name: The system shows the list of issue report
+        type: system
+      - name: Admin clicks the "Update" button
+        type: actor
+      - name: The system shows the form to update the issue report
+        type: system
+      - name: Admin fills the form and clicks the "Update" button
+        type: actor
+    alternative-flows:
+      - name: Delete the issue report
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "Yes" button
+            type: actor
+          - name: The system deletes the issue report
+            type: system
+    exception-flows:
+      - name: Admin is not logged in
+        events:
+          - name: Admin clicks the "Issue Reports" menu
+            type: actor
+          - name: The system shows the login page
+            type: system
+          - name: Admin fills the form and clicks the "Login" button
+            type: actor
+          - name: The system shows the list of issue report
+            type: system
+      - name: Admin has no access to update the issue report
+        events:
+          - name: Admin clicks the "Issue Reports" menu
+            type: actor
+          - name: The system shows the message "You have no access to update the issue report"
+            type: system
+      - name: Admin cancels the deletion
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "No" button
+            type: actor
+          - name: The system closes the confirmation dialog
+            type: system

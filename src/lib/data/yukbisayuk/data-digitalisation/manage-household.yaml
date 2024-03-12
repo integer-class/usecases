@@ -1,0 +1,103 @@
+use-cases:
+  - name: Manage Household
+    id: DD-UC0003
+    level: high
+    actor: Admin
+    type:
+      - detail
+      - essential
+    stakeholders:
+      - name: Admin
+        interest: Can manage household data such as create, read, update, and delete
+    description: |
+      Household means a unit of which several residents are grouped into one based on their KK (Kartu Keluarga).
+      An admin can manage the data of the households in the area
+    relationship:
+      association:
+        - Admin
+      extends:
+        - None
+      include:
+        - Manage resident
+        - Manage asset
+      generalization:
+        - None
+    triggers:
+      - name: Admin clicks the "Household" menu
+        type: external
+      - name: Admin clicks the "Create" button
+        type: external
+      - name: Admin clicks the "Update" button
+        type: external
+      - name: Admin clicks the "Delete" button
+        type: external
+    preconditions:
+      - Admin is logged in
+      - Admin has the access to manage the household data
+    postconditions:
+      - The household data is updated
+      - The household data is deleted
+      - The household data is created
+    flow-of-events:
+      - name: Admin clicks the "Household" menu
+        type: actor
+      - name: The system shows the list of households
+        type: system
+    alternative-flows:
+      - name: Create a new household
+        events:
+          - name: Admin clicks the "Create" button
+            type: actor
+          - name: The system shows the form to create a new household
+            type: system
+          - name: Admin fills the form and clicks the "Save" button
+            type: actor
+          - name: The system saves the new household data
+            type: system
+      - name: Update a household
+        events:
+          - name: Admin clicks the "Update" button
+            type: actor
+          - name: The system shows the form to update the household
+            type: system
+          - name: Admin fills the form and clicks the "Save" button
+            type: actor
+          - name: The system saves the updated household data
+            type: system
+      - name: Delete a household
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "Yes" button
+            type: actor
+          - name: The system deletes the household data
+            type: system
+    exception-flows:
+      - name: Admin is not logged in
+        events:
+          - name: Admin clicks the "Household" menu
+            type: actor
+          - name: The system shows the login page
+            type: system
+          - name: Admin fills the form and clicks the "Login" button
+            type: actor
+          - name: The system shows the list of households
+            type: system
+      - name: Admin has no access to manage the household data
+        events:
+          - name: Admin clicks the "Household" menu
+            type: actor
+          - name: The system shows the message "You have no access to manage the household data"
+            type: system
+      - name: Admin cancels the deletion
+        events:
+          - name: Admin clicks the "Delete" button
+            type: actor
+          - name: The system shows the confirmation dialog
+            type: system
+          - name: Admin clicks the "No" button
+            type: actor
+          - name: The system closes the confirmation dialog
+            type: system

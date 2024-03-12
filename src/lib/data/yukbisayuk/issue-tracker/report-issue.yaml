@@ -1,0 +1,47 @@
+use-cases:
+  - name: Report Issue
+    id: IT-UC0001
+    level: high
+    type:
+      - overview
+      - essential
+    actor: Resident
+    stakeholders:
+      - name: Resident
+        interest: Can report an issue in the area
+    description: |
+      A resident can report an issue in the area such as road damage, street light damage, and others.
+      This is done through the chatbot application
+    relationship:
+      association:
+        - Resident
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Resident reports an issue to the chatbot
+        type: external
+    preconditions:
+      - Resident is registered to the system
+    postconditions:
+      - The issue is reported
+    flow-of-events:
+      - name: Resident reports an issue to the chatbot
+        type: actor
+      - name: The chatbot asked the resident to provide the issue details
+        type: system
+      - name: Resident provides the issue details
+        type: actor
+      - name: The chatbot confirms the issue details
+        type: system
+    alternative-flows: []
+    exception-flows:
+      - name: Resident is not registered to the system
+        events:
+          - name: Resident reports an issue to the chatbot
+            type: actor
+          - name: The chatbot rejects the report and asks the resident to register to the system
+            type: system
