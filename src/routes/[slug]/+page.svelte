@@ -5,6 +5,9 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Use Cases List</title>
+</svelte:head>
 
 <a href="/" class="block text-sky-700 underline text-center mt-4">Back to Home</a>
 <h1 class="text-center text-slate-800 text-3xl mt-2 mb-2 font-semibold">Use Cases List</h1>

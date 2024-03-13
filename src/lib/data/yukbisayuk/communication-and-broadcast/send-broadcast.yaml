@@ -1,0 +1,47 @@
+use-cases:
+  - name: Send Broadcast Message
+    id: CB-UC0002
+    level: medium
+    type:
+      - overview
+      - essential
+    actor: RW
+    stakeholders:
+      - name: RW
+        interest: Can send a broadcast message to its people in the area
+    description: |
+      A RW can send a broadcast message to its people in the area to inform them about the important information
+      such as the schedule of the meeting, the announcement, and so on. This is done through the chatbot.
+    relationship:
+      association:
+        - RW
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: RW sends a broadcast message through the chatbot
+        type: external
+    preconditions:
+      - RW is registered to the system
+    postconditions:
+      - The issue is reported
+    flow-of-events:
+      - name: RW sends a message to the chatbot
+        type: actor
+      - name: The chatbot asked the RW to choose the broadcast template
+        type: system
+      - name: RW fills out the required information and clicks the "Send" button
+        type: actor
+      - name: The chatbot sends the broadcast message to the people registered in the system
+        type: system
+    alternative-flows: []
+    exception-flows:
+      - name: RW is not registered to the system
+        events:
+          - name: RW sends a message to the chatbot
+            type: actor
+          - name: The chatbot rejects the report and asks the RW to register to the system
+            type: system
