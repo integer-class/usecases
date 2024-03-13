@@ -69,5 +69,3 @@ export async function load({ params }): Promise<{ contents: Record<string, Conte
 		contents: Object.fromEntries(groupedContents)
 	};
 }
-
-export const prerender = true;
