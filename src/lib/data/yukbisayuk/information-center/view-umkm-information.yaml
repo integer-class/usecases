@@ -1,16 +1,17 @@
 use-cases:
   - name: View UMKM Information
-    id: UC0007
-    level: high
+    id: IC-UC0005
+    level: medium
     actor: Admin
     type:
-      - detail
+      - overview
       - essential
     stakeholders:
       - name: Resident
         interest: Can view the information of the UMKM in the area
     description: |
-      A resident can view the information of the UMKM in the area
+      A resident can view the information of the UMKM in the area such as the list of UMKM along
+      with its details.
     relationship:
       association:
         - Resident
@@ -21,26 +22,20 @@ use-cases:
       generalization:
         - None
     triggers:
-      - name: Resident clicks the "UMKM" menu
+      - name: Resident access the website and clicks the "UMKM" menu
         type: external
     preconditions:
-      - Resident is logged in
+      - None
     postconditions:
       - None
     flow-of-events:
+      - name: Resident visits the website
+        type: actor
+      - name: The system shows the website
+        type: system
       - name: Resident clicks the "UMKM" menu
         type: actor
       - name: The system shows the list of UMKM
         type: system
     alternative-flows: []
-    exception-flows:
-      - name: Resident is not logged in
-        events:
-          - name: Resident clicks the "UMKM" menu
-            type: actor
-          - name: The system shows the login page
-            type: system
-          - name: Resident fills the form and clicks the "Login" button
-            type: actor
-          - name: The system shows the list of UMKM
-            type: system
+    exception-flows: []

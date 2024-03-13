@@ -1,16 +1,17 @@
 use-cases:
-  - name: View Issue Report Information
-    id: UC0008
-    level: high
+  - name: View Issue Reports Information
+    id: IC-UC0006
+    level: medium
     actor: Admin
     type:
-      - detail
+      - overview
       - essential
     stakeholders:
       - name: Resident
-        interest: Can view the information of the issue report in the area
+        interest: Can view the information of the issue reports in the area
     description: |
-      A resident can view the information of the issue report in the area
+      A resident can view the information of the issue reports in the area such as the list of issues along
+      with its details such as the status.
     relationship:
       association:
         - Resident
@@ -21,26 +22,20 @@ use-cases:
       generalization:
         - None
     triggers:
-      - name: Resident clicks the "Issue Report" menu
+      - name: Resident access the website and clicks the "Issue Reports" menu
         type: external
     preconditions:
-      - Resident is logged in
+      - None
     postconditions:
       - None
     flow-of-events:
-      - name: Resident clicks the "Issue Report" menu
+      - name: Resident visits the website
         type: actor
-      - name: The system shows the list of issue reports
+      - name: The system shows the website
+        type: system
+      - name: Resident clicks the "Issue Reports" menu
+        type: actor
+      - name: The system shows the list of issues with its status
         type: system
     alternative-flows: []
-    exception-flows:
-      - name: Resident is not logged in
-        events:
-          - name: Resident clicks the "Issue Report" menu
-            type: actor
-          - name: The system shows the login page
-            type: system
-          - name: Resident fills the form and clicks the "Login" button
-            type: actor
-          - name: The system shows the list of issue reports
-            type: system
+    exception-flows: []

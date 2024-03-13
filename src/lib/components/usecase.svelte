@@ -4,7 +4,6 @@
 	import Flow from '$lib/components/flow.svelte';
 	import type { UseCaseSchema } from '$lib/schema/use-case';
 
-	export let name: string;
 	export let usecases: UseCaseSchema[];
 
 	let isOpen = false;
@@ -16,7 +15,7 @@
 		on:click={() => isOpen = !isOpen}
 	>
 		<span class="font-medium capitalize">
-			{name}
+			{usecases[0].name}
 		</span>
 		<svg
 			xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16"
@@ -136,6 +135,8 @@
 									<strong class="block text-slate-900 font-medium">Exception Flows:</strong>
 									{#each usecase.exceptionFlows as exceptionFlows}
 										<Flow {...exceptionFlows} />
+									{:else}
+										None
 									{/each}
 								</td>
 							</tr>

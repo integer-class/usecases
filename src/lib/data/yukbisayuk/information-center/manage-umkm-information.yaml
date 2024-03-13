@@ -1,17 +1,17 @@
 use-cases:
-  - name: Publish UMKM Information
-    id: UC0011
+  - name: Manage UMKM Information
+    id: IC-UC0004
     level: high
     actor: Admin
     type:
-      - detail
+      - overview
       - essential
     stakeholders:
       - name: Admin
-        interest: Can manage publish the UMKM information data such as create, read, update, and delete
+        interest: Can manage manage the UMKM information data such as create, read, update, and delete
     description: |
-      Publish UMKM Information means the activity of publishing the UMKM information to the public.
-      Admin can publish the UMKM information to the public
+      Manage UMKM Information means the activity of manageing the UMKM information to the public.
+      Admin can manage the UMKM information to the public
     relationship:
       association:
         - Admin
@@ -22,9 +22,9 @@ use-cases:
       generalization:
         - None
     triggers:
-      - name: Admin clicks the "Publish UMKM Information" menu
+      - name: Admin clicks the "UMKM Information" menu
         type: external
-      - name: Admin clicks the "Publish" button
+      - name: Admin clicks the "Create" button
         type: external
       - name: Admin clicks the "Update" button
         type: external
@@ -32,26 +32,26 @@ use-cases:
         type: external
     preconditions:
       - Admin is logged in
-      - Admin has the access to publish the UMKM information
+      - Admin has the access to manage the UMKM information
     postconditions:
-      - The UMKM information is published
+      - The UMKM information is created
       - The UMKM information is updated
       - The UMKM information is deleted
     flow-of-events:
-      - name: Admin clicks the "Publish UMKM Information" menu
+      - name: Admin clicks the "Manage UMKM Information" menu
         type: actor
       - name: The system shows the list of UMKM information
         type: system
     alternative-flows:
-      - name: Publish the UMKM information
+      - name: Create the UMKM information
         events:
-          - name: Admin clicks the "Publish" button
+          - name: Admin clicks the "Create" button
             type: actor
-          - name: The system shows the form to publish the UMKM information
+          - name: The system shows the form to manage the UMKM information
             type: system
-          - name: Admin fills the form and clicks the "Publish" button
+          - name: Admin fills the form and clicks the "Manage" button
             type: actor
-          - name: The system publishes the UMKM information
+          - name: The system creates the UMKM information
             type: system
       - name: Update the UMKM information
         events:
@@ -76,7 +76,7 @@ use-cases:
     exception-flows:
       - name: Admin is not logged in
         events:
-          - name: Admin clicks the "Publish UMKM Information" menu
+          - name: Admin clicks the "Manage UMKM Information" menu
             type: actor
           - name: The system shows the login page
             type: system
@@ -84,11 +84,11 @@ use-cases:
             type: actor
           - name: The system shows the list of UMKM information
             type: system
-      - name: Admin has no access to publish the UMKM information
+      - name: Admin has no access to manage the UMKM information
         events:
-          - name: Admin clicks the "Publish UMKM Information" menu
+          - name: Admin clicks the "UMKM Information" menu
             type: actor
-          - name: The system shows the message "You have no access to publish the UMKM information"
+          - name: The system shows the message "You have no access to manage the UMKM information"
             type: system
       - name: Admin cancels the deletion
         events:
