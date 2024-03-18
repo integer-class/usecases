@@ -1,0 +1,58 @@
+use-cases:
+  - name: Approve Signed Document
+    id: DS-UC0004
+    level: high
+    actor: RW
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: RW
+        interest: Approve the signed document via whatsapp bot that provided by the system
+    description: |
+      Approve signed document means that the RW can approve the signed document so that the document can be verified. This is done through the whatsapp
+    relationship:
+      association:
+        - RW
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: RW type some command to approve the signed document
+        type: external
+    preconditions:
+      - []
+    postconditions:
+      - The document is approved
+    flow-of-events:
+      - name: RW opens the chat with the system's whatsapp bot
+        type: actor
+      - name: The system shows the list of command that can be used to approve the signed document
+        type: system
+      - name: RW type the command to approve the signed document
+        type: actor
+      - name: The system shows the form to approve the signed document
+        type: system
+      - name: RW fills the form and sends the command to approve the signed document
+        type: actor
+      - name: The system approves the signed document
+        type: system
+    alternative-flows:
+      - Name: RW rejects the signed document
+        events:
+          - name: RW opens the chat with the system's whatsapp bot
+            type: actor
+          - name: The system shows the list of command that can be used to approve the signed document
+            type: system
+          - name: RW type the command to reject the signed document
+            type: actor
+          - name: The system shows the form to reject the signed document
+            type: system
+          - name: RW fills the form and sends the command to reject the signed document
+            type: actor
+          - name: The system rejects the signed document
+            type: system
+    exception-flows: []

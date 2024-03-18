@@ -1,0 +1,44 @@
+use-cases:
+  - name: Send Signed Document
+    id: DS-UC0005
+    level: high
+    actor: Resident
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Resident
+        interest: Send the signed document via whatsapp bot that provided by the system
+    description: |
+      Send signed document means that the resident can send the signed document so that the document can be verified. This is done through the whatsapp
+    relationship:
+      association:
+        - Resident
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Resident type some command to send the signed document
+        type: external
+    preconditions:
+      - []
+    postconditions:
+      - The document is sent
+    flow-of-events:
+      - name: Resident opens the chat with the system's whatsapp bot
+        type: actor
+      - name: The system shows the list of command that can be used to send the signed document
+        type: system
+      - name: Resident type the command to send the signed document
+        type: actor
+      - name: The system shows the form to send the signed document
+        type: system
+      - name: Resident fills the form and sends the command to send the signed document
+        type: actor
+      - name: The system sends the signed document
+        type: system
+    alternative-flows: []
+    exception-flows: []

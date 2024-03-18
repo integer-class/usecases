@@ -1,0 +1,44 @@
+use-cases:
+  - name: Sign Document
+    id: DS-UC0003
+    level: high
+    actor: Resident
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Resident
+        interest: Sign the document via whatsapp bot that provided by the system
+    description: |
+      Sign document means that the resident can sign the document so that the document can be verified. This is done through the whatsapp
+    relationship:
+      association:
+        - Resident
+      extends:
+        - None
+      include:
+        - Send Signed Document
+      generalization:
+        - None
+    triggers:
+      - name: Resident type some command to sign the document
+        type: external
+    preconditions:
+      - []
+    postconditions:
+      - The document is signed
+    flow-of-events:
+      - name: Resident opens the chat with the system's whatsapp bot
+        type: actor
+      - name: The system shows the list of command that can be used to sign the document
+        type: system
+      - name: Resident type the command to sign the document
+        type: actor
+      - name: The system shows the form to sign the document
+        type: system
+      - name: Resident fills the form and sends the command to sign the document
+        type: actor
+      - name: The system signs the document
+        type: system
+    alternative-flows: []
+    exception-flows: []
