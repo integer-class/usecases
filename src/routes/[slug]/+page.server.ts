@@ -16,7 +16,7 @@ export async function load({ params }): Promise<{ contents: Record<string, Conte
 		const modules = import.meta.glob('../../lib/data/yukbisayuk/**/*.yaml', { eager: true });
 		contents = await Promise.all(Object.entries(modules).map(([filename, content]) => {
 			const filepath = filename.split('/');
-			const domain = filepath[filepath.length - 2];
+			const domain = filepath[filepath.length - 2].replaceAll('-', ' ');
 			const name = path.basename(filename, '.yaml');
 			// @ts-expect-error - we know that content is a record from yaml, but it is unknown
 			// so, we make sure by validating its content using zod
@@ -24,6 +24,7 @@ export async function load({ params }): Promise<{ contents: Record<string, Conte
 			return {
 				domain,
 				name,
+				// @ts-expect-error - we know that usecases is an array of use-case, but it is unknown to typescript
 				usecases: usecases.map((usecase) => useCaseSchema.parse(usecase) as UseCaseSchema)
 			};
 		})) as Content[];
