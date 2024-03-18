@@ -1,6 +1,6 @@
 use-cases:
   - name: Broadcast Reminder
-    id: CB-UC0006
+    id: CB-UC0004
     level: medium
     actor: System
     type:

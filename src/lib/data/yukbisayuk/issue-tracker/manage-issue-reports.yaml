@@ -45,6 +45,8 @@ use-cases:
         type: system
       - name: Admin fills the form and clicks the "Update" button
         type: actor
+      - name: The system updates the issue report
+        type: system
     alternative-flows:
       - name: Delete the issue report
         events:

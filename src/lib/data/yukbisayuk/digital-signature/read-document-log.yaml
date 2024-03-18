@@ -1,0 +1,53 @@
+use-cases:
+  - name: Read Document Log
+    id: DS-UC0001
+    level: medium
+    actor: Admin
+    type:
+      - overview
+      - essential
+    stakeholders:
+      - name: Admin
+        interest: Manage the document log so that the system have a log of the document that has been signed
+    description: |
+      An admin can manage the document log so that the system have a log of the document that has been signed. This is done through the web application
+      to prevent the document log from being created in different formats
+    relationship:
+      association:
+        - Admin
+      extends:
+        - None
+      include:
+        - None
+      generalization:
+        - None
+    triggers:
+      - name: Admin clicks the "Digital Signature" menu
+        type: external
+    preconditions:
+      - Admin is logged in
+      - Admin has the access to update the document log
+    postconditions: []
+    flow-of-events:
+      - name: Admin clicks the "Digital Signature" menu
+        type: actor
+      - name: The system shows the list of document log
+        type: system
+    alternative-flows: []
+    exception-flows:
+      - name: Admin is not logged in
+        events:
+          - name: Admin clicks the "Digital Signature" menu
+            type: actor
+          - name: The system shows the login page
+            type: system
+          - name: Admin fills the form and clicks the "Login" button
+            type: actor
+          - name: The system shows the list of document log
+            type: system
+      - name: Admin has no access to update the document log
+        events:
+          - name: Admin clicks the "Digital Signature" menu
+            type: actor
+          - name: The system shows the message "You have no access to update the document log"
+            type: system

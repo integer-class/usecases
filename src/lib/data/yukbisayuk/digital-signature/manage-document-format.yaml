@@ -1,6 +1,6 @@
 use-cases:
-  - name: Manage Reminders
-    id: CB-UC0003
+  - name: Manage Document Format
+    id: DS-UC0001
     level: high
     actor: Admin
     type:
@@ -8,10 +8,10 @@ use-cases:
       - essential
     stakeholders:
       - name: Admin
-        interest: Can manage manage the broadcast template data such as create, read, update, and delete
+        interest: Manage the document format so that the document can be standardised
     description: |
-      Broadcast Templates is the template that can be chosen by the sender to send the broadcast message to the
-      residents in the area. Admin can manage the broadcast template so that it can be adjusted accordingly to the needs.
+      An admin can manage the document format so that the document can be standardised. This is done through the web application
+      to prevent the document from being created in different formats
     relationship:
       association:
         - Admin
@@ -22,7 +22,7 @@ use-cases:
       generalization:
         - None
     triggers:
-      - name: Admin clicks the "Broadcast Templates" menu
+      - name: Admin clicks the "Digital Signature" menu
         type: external
       - name: Admin clicks the "Create" button
         type: external
@@ -32,38 +32,39 @@ use-cases:
         type: external
     preconditions:
       - Admin is logged in
-      - Admin has the access to manage the broadcast template
+      - Admin has the access to update the document format
     postconditions:
-      - The broadcast template is created
-      - The broadcast template is updated
-      - The broadcast template is deleted
+      - The document format is updated
+      - The document format is deleted
     flow-of-events:
-      - name: Admin clicks the "Broadcast Templates" menu
+      - name: Admin clicks the "Digital Signature" menu
         type: actor
-      - name: The system shows the list of broadcast template
+      - name: The system shows the list of document format
+        type: system
+      - name: Admin clicks the "Create" button
+        type: actor
+      - name: The system shows the form to create the document format
+        type: system
+      - name: Admin fills the form and clicks the "Create" button
+        type: actor
+      - name: The system creates the document format
         type: system
     alternative-flows:
-      - name: Create the broadcast template
+      - name: Update the document format
         events:
-          - name: Admin clicks the "Create" button
+          - name: Admin clicks the "Digital Signature" menu
             type: actor
-          - name: The system shows the form to manage the broadcast template
+          - name: The system shows the list of document format
             type: system
-          - name: Admin fills the form and clicks the "Create" button
-            type: actor
-          - name: The system manages the broadcast template
-            type: system
-      - name: Update the broadcast template
-        events:
           - name: Admin clicks the "Update" button
             type: actor
-          - name: The system shows the form to update the broadcast template
+          - name: The system shows the form to update the document format
             type: system
           - name: Admin fills the form and clicks the "Update" button
             type: actor
-          - name: The system updates the broadcast template
+          - name: The system updates the document format
             type: system
-      - name: Delete the broadcast template
+      - name: Delete the document format
         events:
           - name: Admin clicks the "Delete" button
             type: actor
@@ -71,24 +72,24 @@ use-cases:
             type: system
           - name: Admin clicks the "Yes" button
             type: actor
-          - name: The system deletes the broadcast template
+          - name: The system deletes the document format
             type: system
     exception-flows:
       - name: Admin is not logged in
         events:
-          - name: Admin clicks the "Create Broadcast Templates" menu
+          - name: Admin clicks the "Digital Signature" menu
             type: actor
           - name: The system shows the login page
             type: system
           - name: Admin fills the form and clicks the "Login" button
             type: actor
-          - name: The system shows the list of broadcast template
+          - name: The system shows the list of document format
             type: system
-      - name: Admin has no access to manage the broadcast template
+      - name: Admin has no access to update the document format
         events:
-          - name: Admin clicks the "Create Broadcast Template" menu
+          - name: Admin clicks the "Digital Signature" menu
             type: actor
-          - name: The system shows the message "You have no access to manage the broadcast template"
+          - name: The system shows the message "You have no access to update the document format"
             type: system
       - name: Admin cancels the deletion
         events:
