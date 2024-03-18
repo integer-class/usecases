@@ -1,8 +1,5 @@
 import { useCaseSchema, type UseCaseSchema } from '$lib/schema/use-case';
-import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { parse } from 'yaml';
 
 type Content = {
 	domain: string;
@@ -10,45 +7,30 @@ type Content = {
 	usecases: UseCaseSchema[];
 }
 
-const dataBasedir = path.resolve(fileURLToPath(import.meta.url), '..', '..', '..', 'lib', 'data');
-
 /** @type {import('../../../.svelte-kit/types/src/routes').PageLoad} */
 export async function load({ params }): Promise<{ contents: Record<string, Content[]> }> {
+	let contents: Content[] = [];
+
 	// read files from directory
-	const files = await readdir(`${dataBasedir}/${params.slug}`, { encoding: 'utf-8', recursive: true });
-	// filter files that has .yaml extension
-	const yamlFiles = files.filter((file) => file.endsWith('.yaml'));
-	// read file contents
-	const fileContents = await Promise.all(yamlFiles.map(async (file) => {
-		const content = await readFile(`${dataBasedir}/${params.slug}/${file}`, { encoding: 'utf-8' });
-		const directory = path.dirname(file);
-		const [filename] = path.basename(file).split('.');
-		return {
-			domain: directory,
-			name: filename,
-			content
-		};
-	}));
-
-	// parse to json
-	const parsedContents = fileContents.map((file) => ({
-		domain: file.domain.replace(/-/g, ' '),
-		name: file.name.replace(/-/g, ' '),
-		usecases: parse(file.content)['use-cases']
-	}));
-
-	// validate the schema
-	const yamlContents = parsedContents.flatMap((content) => {
-		const parsedContents = content.usecases.map((useCase: unknown) => useCaseSchema.parse(useCase));
-		return {
-			domain: content.domain,
-			name: content.name,
-			usecases: parsedContents
-		};
-	});
+	if (params.slug === 'yukbisayuk') {
+		const modules = import.meta.glob('../../lib/data/yukbisayuk/**/*.yaml', { eager: true });
+		contents = await Promise.all(Object.entries(modules).map(([filename, content]) => {
+			const filepath = filename.split('/');
+			const domain = filepath[filepath.length - 2];
+			const name = path.basename(filename, '.yaml');
+			// @ts-expect-error - we know that content is a record from yaml, but it is unknown
+			// so, we make sure by validating its content using zod
+			const usecases = content['default']['use-cases'];
+			return {
+				domain,
+				name,
+				usecases: usecases.map((usecase) => useCaseSchema.parse(usecase) as UseCaseSchema)
+			};
+		})) as Content[];
+	}
 
 	// group by domain
-	const groupedContents = yamlContents.reduce((acc, content) => {
+	const groupedContents = contents.reduce((acc, content) => {
 		const domain = content.domain;
 		if (!acc.has(domain)) {
 			acc.set(domain, []);
