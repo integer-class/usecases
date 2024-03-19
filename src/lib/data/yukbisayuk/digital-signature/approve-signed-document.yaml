@@ -23,8 +23,7 @@ use-cases:
     triggers:
       - name: RW type some command to approve the signed document
         type: external
-    preconditions:
-      - []
+    preconditions: [ ]
     postconditions:
       - The document is approved
     flow-of-events:
@@ -41,7 +40,7 @@ use-cases:
       - name: The system approves the signed document
         type: system
     alternative-flows:
-      - Name: RW rejects the signed document
+      - name: RW rejects the signed document
         events:
           - name: RW opens the chat with the system's whatsapp bot
             type: actor

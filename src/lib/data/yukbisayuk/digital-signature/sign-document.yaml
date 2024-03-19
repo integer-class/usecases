@@ -23,8 +23,7 @@ use-cases:
     triggers:
       - name: Resident type some command to sign the document
         type: external
-    preconditions:
-      - []
+    preconditions: []
     postconditions:
       - The document is signed
     flow-of-events:
