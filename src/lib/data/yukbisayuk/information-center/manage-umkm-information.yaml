@@ -8,7 +8,7 @@ use-cases:
       - essential
     stakeholders:
       - name: Admin
-        interest: Can manage manage the UMKM information data such as create, read, update, and delete
+        interest: Can manage manage the UMKM information data such as create, read, update, and archive
     description: |
       Manage UMKM Information means the activity of manageing the UMKM information to the public.
       Admin can manage the UMKM information to the public
@@ -28,7 +28,7 @@ use-cases:
         type: external
       - name: Admin clicks the "Update" button
         type: external
-      - name: Admin clicks the "Delete" button
+      - name: Admin clicks the "Archive" button
         type: external
     preconditions:
       - Admin is logged in
@@ -36,7 +36,7 @@ use-cases:
     postconditions:
       - The UMKM information is created
       - The UMKM information is updated
-      - The UMKM information is deleted
+      - The UMKM information is archived
     flow-of-events:
       - name: Admin clicks the "Manage UMKM Information" menu
         type: actor
@@ -63,15 +63,15 @@ use-cases:
             type: actor
           - name: The system updates the UMKM information
             type: system
-      - name: Delete the UMKM information
+      - name: Archive the UMKM information
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system
           - name: Admin clicks the "Yes" button
             type: actor
-          - name: The system deletes the UMKM information
+          - name: The system archives the UMKM information
             type: system
     exception-flows:
       - name: Admin is not logged in
@@ -92,7 +92,7 @@ use-cases:
             type: system
       - name: Admin cancels the deletion
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system

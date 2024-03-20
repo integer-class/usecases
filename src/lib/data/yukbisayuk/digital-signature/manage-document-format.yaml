@@ -28,14 +28,14 @@ use-cases:
         type: external
       - name: Admin clicks the "Update" button
         type: external
-      - name: Admin clicks the "Delete" button
+      - name: Admin clicks the "Archive" button
         type: external
     preconditions:
       - Admin is logged in
       - Admin has the access to update the document format
     postconditions:
       - The document format is updated
-      - The document format is deleted
+      - The document format is archived
     flow-of-events:
       - name: Admin clicks the "Digital Signature" menu
         type: actor
@@ -64,15 +64,15 @@ use-cases:
             type: actor
           - name: The system updates the document format
             type: system
-      - name: Delete the document format
+      - name: Archive the document format
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system
           - name: Admin clicks the "Yes" button
             type: actor
-          - name: The system deletes the document format
+          - name: The system archives the document format
             type: system
     exception-flows:
       - name: Admin is not logged in
@@ -93,7 +93,7 @@ use-cases:
             type: system
       - name: Admin cancels the deletion
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system

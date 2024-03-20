@@ -8,7 +8,7 @@ use-cases:
       - essential
     stakeholders:
       - name: Admin
-        interest: Can manage manage the facility information data such as create, read, update, and delete
+        interest: Can manage manage the facility information data such as create, read, update, and archive
     description: |
       Facility Information of the area will be managed by the Admin to provide the information to the public.
       This is to make it easier for the public to find out the information about the facility in the area.
@@ -28,7 +28,7 @@ use-cases:
         type: external
       - name: Admin clicks the "Update" button
         type: external
-      - name: Admin clicks the "Delete" button
+      - name: Admin clicks the "Archive" button
         type: external
     preconditions:
       - Admin is logged in
@@ -36,7 +36,7 @@ use-cases:
     postconditions:
       - The facility information is created
       - The facility information is updated
-      - The facility information is deleted
+      - The facility information is archived
     flow-of-events:
       - name: Admin clicks the "Facility Information" menu
         type: actor
@@ -63,15 +63,15 @@ use-cases:
             type: actor
           - name: The system updates the facility information
             type: system
-      - name: Delete the facility information
+      - name: Archive the facility information
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system
           - name: Admin clicks the "Yes" button
             type: actor
-          - name: The system deletes the facility information
+          - name: The system archives the facility information
             type: system
     exception-flows:
       - name: Admin is not logged in
@@ -92,7 +92,7 @@ use-cases:
             type: system
       - name: Admin cancels the deletion
         events:
-            - name: Admin clicks the "Delete" button
+            - name: Admin clicks the "Archive" button
               type: actor
             - name: The system shows the confirmation dialog
               type: system

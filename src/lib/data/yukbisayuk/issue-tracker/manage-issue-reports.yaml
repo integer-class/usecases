@@ -10,7 +10,7 @@ use-cases:
       - name: Admin
         interest: Manage the issue reports in the area
     description: |
-      An admin can manage the issue reports in the area such as update and delete the issue report.
+      An admin can manage the issue reports in the area such as update and archive the issue report.
       They can also change the status of the issue report.
     relationship:
       association:
@@ -26,14 +26,14 @@ use-cases:
         type: external
       - name: Admin clicks the "Update" button
         type: external
-      - name: Admin clicks the "Delete" button
+      - name: Admin clicks the "Archive" button
         type: external
     preconditions:
       - Admin is logged in
       - Admin has the access to update the issue report
     postconditions:
       - The issue report is updated
-      - The issue report is deleted
+      - The issue report is archived
     flow-of-events:
       - name: Admin clicks the "Issue Reports" menu
         type: actor
@@ -48,15 +48,15 @@ use-cases:
       - name: The system updates the issue report
         type: system
     alternative-flows:
-      - name: Delete the issue report
+      - name: Archive the issue report
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system
           - name: Admin clicks the "Yes" button
             type: actor
-          - name: The system deletes the issue report
+          - name: The system archives the issue report
             type: system
     exception-flows:
       - name: Admin is not logged in
@@ -77,7 +77,7 @@ use-cases:
             type: system
       - name: Admin cancels the deletion
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system

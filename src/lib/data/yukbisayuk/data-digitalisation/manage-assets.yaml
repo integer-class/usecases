@@ -8,7 +8,7 @@ use-cases:
       - essential
     stakeholders:
       - name: Admin
-        interest: Can manage resident asset data such as create, read, update, and delete
+        interest: Can manage resident asset data such as create, read, update, and archive
     description: |
       Asset means a valuable thing that belongs to a person.
       An admin can manage the data of the assets in the area to help them keep track of the assets in the area
@@ -28,14 +28,14 @@ use-cases:
         type: external
       - name: Admin clicks the "Update" button
         type: external
-      - name: Admin clicks the "Delete" button
+      - name: Admin clicks the "Archive" button
         type: external
     preconditions:
       - Admin is logged in
       - Admin has the access to manage the asset data
     postconditions:
       - The asset data is updated
-      - The asset data is deleted
+      - The asset data is archived
       - The asset data is created
     flow-of-events:
       - name: Admin clicks the "Asset" menu
@@ -63,15 +63,15 @@ use-cases:
             type: actor
           - name: The system saves the updated asset data
             type: system
-      - name: Delete an asset
+      - name: Archive an asset
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation
             type: system
           - name: Admin clicks the "Yes" button
             type: actor
-          - name: The system deletes the asset data
+          - name: The system archives the asset data
             type: system
     exception-flows:
       - name: Admin is not logged in
@@ -92,7 +92,7 @@ use-cases:
             type: system
       - name: Admin cancels the deletion
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system

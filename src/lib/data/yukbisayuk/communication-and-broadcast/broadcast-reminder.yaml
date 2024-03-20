@@ -12,7 +12,7 @@ use-cases:
     description: |
       Bookkeeping snapshot is generated from the bookkeeping data each month.
       This is needed to see the financial condition of the RW.
-      At the same time it locks the bookkeeping data so it can't be updated or deleted.
+      At the same time it locks the bookkeeping data so it can't be updated or archived.
     relationship:
       association:
         - Admin
@@ -34,7 +34,7 @@ use-cases:
       - A schedule to generate the bookkeeping snapshot is set
     postconditions:
       - The bookkeeping data is updated
-      - The bookkeeping data is deleted
+      - The bookkeeping data is archived
       - The bookkeeping data is created
     flow-of-events:
       - name: The system generates the bookkeeping snapshot

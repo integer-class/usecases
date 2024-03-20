@@ -8,7 +8,7 @@ use-cases:
       - essential
     stakeholders:
       - name: Admin
-        interest: Can manage resident data such as create, read, update, and delete
+        interest: Can manage resident data such as create, read, update, and archive
     description: |
       A resident is a person who lives in a household. An admin can manage the data of the residents in the area. This is
       needed to keep the data of the residents up to date.
@@ -28,14 +28,14 @@ use-cases:
         type: external
       - name: Admin clicks the "Update" button
         type: external
-      - name: Admin clicks the "Delete" button
+      - name: Admin clicks the "Archive" button
         type: external
     preconditions:
       - Admin is logged in
       - Admin has the access to manage the resident data
     postconditions:
       - The resident data is updated
-      - The resident data is deleted
+      - The resident data is archived
       - The resident data is created
     flow-of-events:
       - name: Admin clicks the "Resident" menu
@@ -63,15 +63,15 @@ use-cases:
             type: actor
           - name: The system saves the updated resident data
             type: system
-      - name: Delete a resident
+      - name: Archive a resident
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system
           - name: Admin clicks the "Yes" button
             type: actor
-          - name: The system deletes the resident data
+          - name: The system archives the resident data
             type: system
     exception-flows:
       - name: Admin is not logged in
@@ -92,7 +92,7 @@ use-cases:
             type: system
       - name: Admin cancels the deletion
         events:
-          - name: Admin clicks the "Delete" button
+          - name: Admin clicks the "Archive" button
             type: actor
           - name: The system shows the confirmation dialog
             type: system
