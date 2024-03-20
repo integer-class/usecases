@@ -5,11 +5,11 @@
 </script>
 
 <div class="py-1 px-2">
-	<div class="flex items-center justify-between mb-1">
+	<div class="flex items-center justify-between mb-1 print:mb-0">
 		<div class="text-sm text-slate-800 font-semibold">Importance Level</div>
-		<div class="text-xs text-gray-600 uppercase">{level}</div>
+		<div class="text-xs text-slate-600 print:text-slate-800 uppercase">{level}</div>
 	</div>
-	<div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+	<div class="h-2 bg-gray-200 rounded-full overflow-hidden print:hidden">
 		{#if level === "low"}
 			<div class="h-full bg-green-400" style="width: 33.3333%"></div>
 		{:else if level === "medium"}
