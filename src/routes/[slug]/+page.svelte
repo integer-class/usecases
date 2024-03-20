@@ -9,7 +9,7 @@
 	<title>Use Cases List</title>
 </svelte:head>
 
-<a href="/" class="block text-sky-700 underline text-center mt-4">Back to Home</a>
+<a href="/" class="block text-sky-700 underline text-center mt-4 print:invisible">Back to Home</a>
 <h1 class="text-center text-slate-800 text-3xl mt-2 mb-2 font-semibold">Use Cases List</h1>
 <p class="text-center mx-auto text-slate-700 leading-relaxed">
 	The use cases are organized by domain. Each domain is a category of use cases that are related to each other.

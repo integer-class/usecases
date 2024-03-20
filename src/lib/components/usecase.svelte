@@ -3,10 +3,16 @@
 	import Level from '$lib/components/level.svelte';
 	import Flow from '$lib/components/flow.svelte';
 	import type { UseCaseSchema } from '$lib/schema/use-case';
+	import { onMount } from 'svelte';
 
 	export let usecases: UseCaseSchema[];
 
 	let isOpen = false;
+
+	onMount(() => {
+		window.addEventListener('beforeprint', () => isOpen = true);
+		window.addEventListener('afterprint', () => isOpen = false);
+	});
 </script>
 
 <div class="bg-white text-slate-800">
