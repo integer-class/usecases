@@ -7,15 +7,12 @@ use-cases:
       - overview
       - essential
     stakeholders:
-      - name: Admin
-        interest: Can see bookkeeping snapshot data
+      - name: System
+        interest: Can broadcast a reminder to the residents
     description: |
-      Bookkeeping snapshot is generated from the bookkeeping data each month.
-      This is needed to see the financial condition of the RW.
-      At the same time it locks the bookkeeping data so it can't be updated or archived.
+        The system can broadcast a reminder to the residents in the area
     relationship:
       association:
-        - Admin
         - System
       extends:
         - None
@@ -24,48 +21,12 @@ use-cases:
       generalization:
         - None
     triggers:
-      - name: System generates the bookkeeping snapshot triggered by a cron job
+      - name: System broadcasts a reminder
         type: temporal
-      - name: Admin clicks the "Bookkeeping Snapshot" menu
-        type: external
-    preconditions:
-      - Admin is logged in
-      - Admin has the access to manage the bookkeeping data
-      - A schedule to generate the bookkeeping snapshot is set
-    postconditions:
-      - The bookkeeping data is updated
-      - The bookkeeping data is archived
-      - The bookkeeping data is created
+    preconditions: []
+    postconditions: []
     flow-of-events:
-      - name: The system generates the bookkeeping snapshot
+      - name: The system broadcasts a reminder
         type: system
-    alternative-flows:
-      - name: See the bookkeeping snapshot
-        events:
-          - name: Admin clicks the "Bookkeeping Snapshot" menu
-            type: actor
-          - name: The system shows the list of bookkeeping snapshot
-            type: system
-    exception-flows:
-      - name: Admin is not logged in
-        events:
-          - name: Admin clicks the "Bookkeeping Snapshot" menu
-            type: actor
-          - name: The system shows the login page
-            type: system
-          - name: Admin fills the form and clicks the "Login" button
-            type: actor
-          - name: The system shows the list of bookkeeping snapshot
-            type: system
-      - name: Admin has no access to see the bookkeeping snapshot data
-        events:
-          - name: Admin clicks the "Bookkeeping Snapshot" menu
-            type: actor
-          - name: The system shows the message "You have no access to manage the bookkeeping data"
-            type: system
-      - name: The bookkeeping snapshot is not generated yet
-        events:
-          - name: Admin clicks the "Bookkeeping Snapshot" menu
-            type: actor
-          - name: The system shows the message "The bookkeeping snapshot is not generated yet"
-            type: system
+    alternative-flows: []
+    exception-flows: []
